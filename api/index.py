@@ -6,8 +6,9 @@ from io import BytesIO
 import tempfile
 import zipfile
 import os
+from vercel_flask import VercelFlask
 
-app = Flask(__name__, template_folder="../templates")
+app = VercelFlask(__name__, template_folder="../templates")
 
 
 def convert_image(name, url, format_choice, folder):
@@ -54,7 +55,6 @@ def convert():
             for _, row in df.iterrows():
                 name = str(row["name"]).strip()
                 url = str(row["link"]).strip()
-
                 out = convert_image(name, url, format_choice, tempdir)
                 if out:
                     zf.write(out, os.path.basename(out))
@@ -62,8 +62,5 @@ def convert():
         return send_file(zip_path, as_attachment=True, download_name="converted.zip")
 
 
-# Vercel handler
-def handler(request, context):
-    return app(request, context)
-
-
+# Export for vercel
+app = app
