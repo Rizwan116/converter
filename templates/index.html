@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Converter</title>
+</head>
+<body>
+
+<h2>WEBP → JPG / PNG Converter</h2>
+
+<form action="/api/convert" method="POST" enctype="multipart/form-data">
+
+    <label>Upload Excel File:</label>
+    <input type="file" name="excel_file" required>
+
+    <label>Select Output Format:</label>
+    <select name="format_choice" required>
+        <option value="jpg">JPG</option>
+        <option value="png">PNG</option>
+    </select>
+
+    <button type="submit">Convert & Download ZIP</button>
+
+</form>
+
+</body>
+</html>
